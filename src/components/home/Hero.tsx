@@ -6,7 +6,7 @@ import heroImage from '@/assets/hero-run.jpg';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-background via-sewa-warm to-background">
+    <section className="relative overflow-hidden hero-animated-bg">
       <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}

@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Heart, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import sewaLogo from '@/assets/sewa-logo.jpg';
-import heroImage from '@/assets/hero-run.jpg';
+
+// Placeholder video URL - replace with your own SEWA Club video
+const HERO_VIDEO_URL = "https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4";
 
 const Hero = () => {
   return (
@@ -57,12 +59,14 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Image */}
           <div className="relative animate-fade-in">
             <div className="relative rounded-2xl overflow-hidden shadow-warm">
-              <img
-                src={heroImage}
-                alt="SEWA Club volunteers running for a cause"
+              <video
+                src={HERO_VIDEO_URL}
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-[400px] md:h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 to-transparent" />

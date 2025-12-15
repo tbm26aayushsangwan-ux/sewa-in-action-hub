@@ -59,27 +59,38 @@ const EventDetail = () => {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative h-[40vh] md:h-[50vh] overflow-hidden">
+      {/* Back Button - Above Hero */}
+      <section className="py-4 bg-background">
+        <div className="container mx-auto px-4">
+          <Link 
+            to="/events" 
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Events
+          </Link>
+        </div>
+      </section>
+
+      {/* Hero Banner Image */}
+      <section className="relative h-[35vh] md:h-[45vh] overflow-hidden">
         <img
           src={event.image}
           alt={event.title}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
-          <div className="container mx-auto">
-            <Link to="/events" className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground mb-4 transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Events
-            </Link>
-            <Badge variant={causeVariant[event.cause]} className="mb-4">
-              {event.causeName}
-            </Badge>
-            <h1 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground mb-2">
-              {event.title}
-            </h1>
-          </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-foreground/20 to-transparent" />
+      </section>
+
+      {/* Event Title and Category */}
+      <section className="py-8 bg-background">
+        <div className="container mx-auto px-4">
+          <h1 className="font-display text-3xl md:text-5xl font-bold mb-4">
+            {event.title}
+          </h1>
+          <Badge variant={causeVariant[event.cause]} className="mb-4">
+            {event.causeName}
+          </Badge>
         </div>
       </section>
 

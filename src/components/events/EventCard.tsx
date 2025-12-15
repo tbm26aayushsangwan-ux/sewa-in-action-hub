@@ -70,17 +70,15 @@ const EventCard = ({ event, featured = false }: EventCardProps) => {
   return (
     <Link
       to={event.isCompleted ? `/impact/${event.id}` : `/events/${event.id}`}
-      className="group block overflow-hidden rounded-xl bg-card shadow-card hover-lift"
+      className="group flex flex-col overflow-hidden rounded-xl bg-card shadow-card hover-lift h-full"
     >
-      <div className="relative h-48 overflow-hidden">
+      {/* Event Image */}
+      <div className="relative h-48 overflow-hidden flex-shrink-0">
         <img
           src={event.image}
           alt={event.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute top-3 left-3">
-          <Badge variant={causeVariant[event.cause]}>{event.causeName}</Badge>
-        </div>
         {event.isCompleted && (
           <div className="absolute inset-0 bg-foreground/20 flex items-center justify-center">
             <Badge variant="soft" className="bg-card/90 text-foreground">
@@ -89,13 +87,27 @@ const EventCard = ({ event, featured = false }: EventCardProps) => {
           </div>
         )}
       </div>
-      <div className="p-5">
+      
+      {/* Card Content */}
+      <div className="p-5 flex flex-col flex-grow">
+        {/* Title */}
         <h3 className="font-display font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
           {event.title}
         </h3>
+        
+        {/* Description */}
         <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
           {event.shortDescription}
         </p>
+        
+        {/* Category Badge */}
+        <div className="mb-3">
+          <Badge variant={causeVariant[event.cause]} className="text-xs">
+            {event.causeName}
+          </Badge>
+        </div>
+        
+        {/* Date and Location Row */}
         <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
           <span className="flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5" />
@@ -110,14 +122,18 @@ const EventCard = ({ event, featured = false }: EventCardProps) => {
             {event.location.split(',')[0]}
           </span>
         </div>
-        {!event.isCompleted ? (
-          <div className="flex items-center justify-between">
-            <span className="font-display font-bold text-primary">₹{event.donation}</span>
-            <span className="text-xs text-muted-foreground">{event.spotsLeft} spots left</span>
-          </div>
-        ) : (
-          <p className="text-xs text-secondary font-medium">{event.impactNote}</p>
-        )}
+        
+        {/* Footer Row - Price and Spots (pushed to bottom) */}
+        <div className="mt-auto pt-3 border-t border-border">
+          {!event.isCompleted ? (
+            <div className="flex items-center justify-between">
+              <span className="font-display font-bold text-primary">₹{event.donation}</span>
+              <span className="text-xs text-muted-foreground">{event.spotsLeft} spots left</span>
+            </div>
+          ) : (
+            <p className="text-xs text-secondary font-medium">{event.impactNote}</p>
+          )}
+        </div>
       </div>
     </Link>
   );
